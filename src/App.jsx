@@ -3,7 +3,7 @@ function App() {
 
   return (
     <>
-    <p>HELLOW WORLD</p>
+    <p>Few Changes</p>
     </>
   )
 }
