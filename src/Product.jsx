@@ -1,4 +1,4 @@
-import { Card, Rating } from 'flowbite-react';
+import { Card, Rating, Badge } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 const Product = ({ price, image, id, name, rating, type, details }) => {
     let arr = new Array(Number(rating)).fill("")
@@ -7,13 +7,13 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
             <Card renderImage={() => <div className='flex justify-center h-full'><img src={image} className='h-44' /></div>}
                 imgAlt={name}
                 id={id} className='p-1 h-full'>
-                <Link to="#">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                        <p>
-                            {name}
-                        </p>
-                    </h5>
-                </Link>
+
+                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <p>
+                        {name}
+                    </p>
+                </h5>
+
                 <div className="mb-5 mt-2.5 flex items-center">
                     <Rating>
                         {
@@ -28,16 +28,16 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                     </span>
                 </div>
                 <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">
                         ${price}
                     </span>
 
                     {
                         details ? <div className='flex gap-1'> <Link className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800" to={`/product/${id}`}>
                             <p>Details</p>
-                            </Link> 
+                        </Link>
 
-                        <Link className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800" to={`/product/${id}`}>
+                            <Link className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800" to={`/product/${id}`}>
                                 <p>
                                     Update
                                 </p>
@@ -54,6 +54,9 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                     }
 
                 </div>
+                <Badge className='text-lg justify-center' color="purple">
+                    {details}
+                </Badge>
             </Card>
         </div>
     );
