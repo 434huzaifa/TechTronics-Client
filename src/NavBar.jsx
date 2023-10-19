@@ -1,6 +1,7 @@
 // import { NavLink } from "react-router-dom";
 import { Dropdown, Navbar,Avatar } from 'flowbite-react';
 import { NavLink } from 'react-router-dom';
+import './App.css'
 const NavBar = () => {
     return (
         <Navbar fluid rounded className='mb-24'>
@@ -26,10 +27,8 @@ const NavBar = () => {
             </div>
             <Navbar.Collapse>
                 <NavLink to="/">Home</NavLink>
-                <NavLink to="#">About</NavLink>
-                <NavLink to="#">Services</NavLink>
-                <NavLink to="#">Pricing</NavLink>
-                <NavLink to="#">Contact</NavLink>
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/register">Register</NavLink>
             </Navbar.Collapse>
         </Navbar>
     );
