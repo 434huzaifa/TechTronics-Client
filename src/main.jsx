@@ -10,6 +10,7 @@ import AddProduct from './AddProduct.jsx'
 import Brand from './Brand.jsx'
 import axios from 'axios'
 import ProductDetails from './ProductDetails.jsx'
+import Private from './Private.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/addproduct',
-        element:<AddProduct></AddProduct>
+        element:<Private><AddProduct></AddProduct></Private>
       },
       {
         path:"/company/:id",
@@ -38,12 +39,12 @@ const router = createBrowserRouter([
       },
       {
         path:"/product/:id",
-        element:<AddProduct></AddProduct>,
+        element:<Private><AddProduct></AddProduct></Private>,
         loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
       },
       {
         path:'/productdetails/:id',
-        element:<ProductDetails></ProductDetails>,
+        element:<Private> <ProductDetails></ProductDetails></Private>,
         loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
       }
     ]

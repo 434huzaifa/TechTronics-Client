@@ -11,7 +11,8 @@ const BrandCards = () => {
     }, [])
 
     return (
-        <div className="flex">
+        
+        <div className="flex justify-center">
             {
                 brands.map((x,index)=>{
                     return(
