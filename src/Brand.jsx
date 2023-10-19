@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import Product from "./Product";
-import { Badge } from "flowbite-react";
 
 const Brand = () => {
     const data=useLoaderData()
@@ -10,7 +9,6 @@ const Brand = () => {
     return (
         <div>
             <Banner></Banner>
-            <Badge color="purple"></Badge>
             <div className="grid grid-cols-4 gap-2">
             {
                  allProduct.map((x,index)=>{

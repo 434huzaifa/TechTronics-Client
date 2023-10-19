@@ -24,7 +24,7 @@ const AddProduct = () => {
                 .then(res => {
                     if (res.data.modifiedCount!=0) {
                         Swal.fire({ icon: 'success', title: "Product Successfully Updated" }).then(() => {
-                            navigate(`/company${product.company}`)
+                            navigate(`/company/${product.company}`)
                         });
                     }
                 })
