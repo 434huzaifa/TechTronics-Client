@@ -1,12 +1,74 @@
 import { Button, Card, Kbd, Label, TextInput, Badge } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import { useContext } from "react";
+import { myContext } from "./App";
+import { updateProfile } from "firebase/auth";
+import Swal from 'sweetalert2'
 const Register = () => {
+    const { signUpUser, googlemama } = useContext(myContext)
+    const navigate = useNavigate()
+    function GetUserAndCreate(e) {
+        e.preventDefault();
+        let error = document.getElementById("error")
+        let name = e.target.name.value;
+        console.log('name: ', name);
+        let email = e.target.email.value;
+        console.log('email: ', email);
+        let image = e.target.image.value;
+        console.log('image: ', image);
+        let password1 = e.target.password1.value;
+        console.log('password1: ', password1);
+        let password2 = e.target.password2.value;
+        console.log('password2: ', password2);
+
+        if (password1 == password2) {
+            if (toString(password1).length >= 6) {
+                if (/[A-Z]/.test(password1)) {
+                    if (/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password1)) {
+                        signUpUser(email, password1)
+                            .then(res => {
+                                updateProfile(res.user, {
+                                    displayName: name,
+                                    photoURL: image
+                                }).then(res => {
+                                    console.log(res.user)
+                                }).catch(error => console.log(error))
+
+                                Swal.fire({ icon: 'success', title: "Account Successfully Created" }
+                                ).then(()=>{
+                                    navigate('/login')
+                                })
+                            }
+                            )
+                            .catch(error => console.log(error))
+                    } else {
+                        error.textContent = "Password don't have a special character"
+                    }
+                } else {
+                    error.textContent = "Password don't have a capital letter"
+                }
+            } else {
+                error.textContent = 'Password Less than 6 characters'
+            }
+        } else {
+            error.textContent = 'Password Did Not Match'
+
+        }
+
+    }
+    function itsgoogletime() {
+        googlemama()
+          .then(() => {
+            navigate('/')
+          })
+          .catch(error => console.log(error))
+      }
     return (
         <div>
             <Card>
-                <form className="flex flex-col gap-4">
-                <div>
+                <form className="flex flex-col gap-4" onSubmit={GetUserAndCreate}>
+                    <div>
                         <div className="mb-2 block">
                             <Label
                                 htmlFor="name"
@@ -17,6 +79,7 @@ const Register = () => {
                             id="name"
                             required
                             type="text"
+                            name="name"
                         />
                     </div>
                     <div>
@@ -29,6 +92,7 @@ const Register = () => {
                         <TextInput
                             id="image"
                             type="url"
+                            name="image"
                         />
                     </div>
                     <div>
@@ -43,6 +107,7 @@ const Register = () => {
                             placeholder="name@flowbite.com"
                             required
                             type="email"
+                            name="email"
                         />
                     </div>
                     <div>
@@ -56,6 +121,7 @@ const Register = () => {
                             id="password1"
                             required
                             type="password"
+                            name="password1"
                         />
                     </div>
                     <div>
@@ -69,8 +135,10 @@ const Register = () => {
                             id="password2"
                             required
                             type="password"
+                            name="password2"
                         />
                     </div>
+                    <p id='error' className='text-red-500 font-semibold '></p>
                     <div className='flex gap-4 justify-center items-center'>
                         <Button type="submit" color="blue">
                             Submit
@@ -78,7 +146,7 @@ const Register = () => {
                         <Badge color="pink">
                             or
                         </Badge>
-                        <Button color='gray'>
+                        <Button color='gray' onClick={itsgoogletime}>
                             <FcGoogle className='text-2xl'> </FcGoogle>
                         </Button>
                     </div>
