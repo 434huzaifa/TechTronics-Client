@@ -4,16 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.5.1",
     "firebase": "^10.5.0",
+    "flowbite": "^1.8.1",
+    "flowbite-react": "^0.6.4",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
+    "react-daisyui": "^4.1.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
     "sort-by": "^1.2.0",
