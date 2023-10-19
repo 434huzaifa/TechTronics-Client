@@ -10,7 +10,7 @@ const Banner = () => {
                     <img src="/banner2.png" className="w-full object-contain" />
                 </div>
                 <div id="item3" className="carousel-item w-full">
-                    <img src="banner3.jpg" className="w-full object-contain" />
+                    <img src="/banner3.jpg" className="w-full object-contain" />
                 </div>
             </div>
             <div className="flex justify-center w-full py-2 gap-2">

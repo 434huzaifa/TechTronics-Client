@@ -2,28 +2,37 @@ import { Button, Label, TextInput, Select, Textarea, Radio } from 'flowbite-reac
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { useLoaderData } from 'react-router-dom';
 const AddProduct = () => {
     const [brands, setBrands] = useState([])
+    const product = useLoaderData();
+    const type = ['other', 'game', 'headphone', 'fridge', 'computer', 'phone']
+    let arr = new Array(5).fill()
+    console.log(product)
     useEffect(() => {
         axios.get("http://192.168.0.115:5000/brands")
             .then(res => setBrands(res.data))
             .catch(err => console.log(err))
     }, [])
+    console.log(brands)
     function CreateProduct(e) {
         e.preventDefault();
-        let formdata= Object.fromEntries(new FormData(e.target)) // turn fromdata into key value pair. default form data make array of array
-        axios.post("http://192.168.0.115:5000/product",formdata)
-        .then(res=>{
-            if (res.data.insertedId !=null) {
-                Swal.fire({ icon: 'success', title: "Product Successfully Created" }).then(()=>{
-                    e.target.reset();
-                });
-                
-            }
+        let formdata = Object.fromEntries(new FormData(e.target)) // turn fromdata into key value pair. default form data make array of array
+        if (product) {
+            axios.put(`http://192.168.0.115:5000/product/${product._id}`)
+        } else {
             
-        })
-        .catch(error=>console.log(error))
-        
+        }
+        axios.post("http://192.168.0.115:5000/product", formdata)
+            .then(res => {
+                if (res.data.insertedId != null) {
+                    Swal.fire({ icon: 'success', title: "Product Successfully Created" }).then(() => {
+                        e.target.reset();
+                    });
+                }
+            })
+            .catch(error => console.log(error))
+
     }
     return (
         <div className='flex justify-center'>
@@ -41,6 +50,7 @@ const AddProduct = () => {
                         required
                         type="name"
                         name="name"
+                        value={product ? product.name : ""}
                     />
                 </div>
                 <div>
@@ -55,6 +65,7 @@ const AddProduct = () => {
                         required
                         type="url"
                         name="image"
+                        value={product ? product.image : ""}
                     />
                 </div>
                 <div
@@ -73,9 +84,13 @@ const AddProduct = () => {
                     >
                         {
                             brands.map((x, index) => {
-                                return (
-                                    <option key={index} value={x._id}> {x.name}</option>
-                                )
+                                if (product) {
+
+                                    if (product.company == x._id) {
+                                        return (<option key={index} value={x._id} selected> {x.name}</option>)
+                                    }
+                                }
+                                return (<option key={index} value={x._id}> {x.name}</option>)
                             })
                         }
                     </Select>
@@ -91,12 +106,17 @@ const AddProduct = () => {
                     </div>
                     <Select
                         id="type" required name="type">
-                        <option value="phone"> Phone</option>
-                        <option value="computer"> Computer</option>
-                        <option value="fridge"> Fridge</option>
-                        <option value="headphone"> Headphone</option>
-                        <option value="game"> Game</option>
-                        <option value="other"> Other</option>
+                        {
+                            type.map((x, index) => {
+
+                                if (product && product.type == x) {
+                                    return <option key={index} value={x} selected> {x.toUpperCase()}</option>
+                                } else {
+
+                                    return (<option key={index} value={x}>  {x.toUpperCase()}</option>)
+                                }
+                            })
+                        }
                     </Select>
                 </div>
                 <div>
@@ -111,88 +131,72 @@ const AddProduct = () => {
                         required
                         type="number"
                         name="price"
+                        value={product ? product.price : ""}
                     />
                 </div>
-                <div
-                    className="max-w-md"
-                    id="textarea"
-                >
-                    <div className="mb-2 block">
-                        <Label
-                            htmlFor="description"
-                            value="Short Description"
+                {
+                    product ? "" : <div
+                        className="max-w-md"
+                        id="textarea">
+                        <div className="mb-2 block">
+                            <Label
+                                htmlFor="description"
+                                value="Short Description"
+                            />
+                        </div>
+                        <Textarea
+                            id="description"
+                            required
+                            rows={4}
+                            name="description"
                         />
                     </div>
-                    <Textarea
-                        id="description"
-                        required
-                        rows={4}
-                        name="description"
-                    />
-                </div>
+                }
+
                 <fieldset
                     className="flex  max-w-md gap-4"
                     id="radio"
                 >
                     <legend className="mb-4">
-                        Rating 
+                        Rating
                     </legend>
-                    <div className="flex items-center gap-2">
-                        <Radio
-                            defaultChecked
-                            id="5"
-                            name="rating"
-                            value={1}
-                        />
-                        <Label htmlFor="5">
-                            1
-                        </Label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Radio
-                            id="5"
-                            name="rating"
-                            value={2}
-                        />
-                        <Label htmlFor="5">
-                            2
-                        </Label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Radio
-                            id="5"
-                            name="rating"
-                            value={3}
-                        />
-                        <Label htmlFor="5">
-                            3
-                        </Label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Radio
-                            id="5"
-                            name="rating"
-                            value={4}
-                        />
-                        <Label htmlFor="5">
-                            4
-                        </Label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Radio
-                        
-                            id="5"
-                            name="rating"
-                            value={5}
-                        />
-                        <Label
-                            htmlFor="5"
-                        >
-                            <p>
-                                5
-                            </p>
-                        </Label>
-                    </div>
+                    {
+                        arr.map((x, index) => {
+                            if (product && product.rating == index + 1) {
+                                return (
+                                    <>
+                                        <div className="flex items-center gap-2">
+                                            <Radio
+                                                defaultChecked
+                                                id={index + 1}
+                                                name="rating"
+                                                value={index}
+                                            />
+                                            <Label htmlFor={index + 1}>
+                                                {index + 1}
+                                            </Label>
+                                        </div>
+                                    </>
+                                )
+                            } else {
+                                return (
+                                    <>
+                                        <div className="flex items-center gap-2">
+                                            <Radio
+
+                                                id={index + 1}
+                                                name="rating"
+                                                value={index + 1}
+                                            />
+                                            <Label htmlFor={index + 1}>
+                                                {index + 1}
+                                            </Label>
+                                        </div>
+                                    </>
+                                )
+                            }
+                        })
+                    }
                 </fieldset>
                 <Button type="submit">
                     Add

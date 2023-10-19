@@ -7,6 +7,8 @@ import {createBrowserRouter,Outlet,RouterProvider,} from "react-router-dom";
 import Login from './Login.jsx'
 import Register from './Register.jsx'
 import AddProduct from './AddProduct.jsx'
+import Brand from './Brand.jsx'
+import axios from 'axios'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -27,6 +29,16 @@ const router = createBrowserRouter([
       {
         path:'/addproduct',
         element:<AddProduct></AddProduct>
+      },
+      {
+        path:"/company/:id",
+        element:<Brand></Brand>,
+        loader:({params})=>{return axios.get(`http://192.168.0.115:5000/company/${params.id}`).then(res=>res.data)},
+      },
+      {
+        path:"/product/:id",
+        element:<AddProduct></AddProduct>,
+        loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
       }
     ]
   }

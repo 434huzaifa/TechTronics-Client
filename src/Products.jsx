@@ -11,13 +11,12 @@ const Products = () => {
         })
         .catch(error=>console.log(error))
     },[])
-    console.log(allProducts)
     return (
         <div className="grid grid-cols-4 gap-4 mt-5">
             {
                 allProducts.map((x,index)=>{
                     return (
-                        <Product key={index} id={x._id} image={x.image} name={x.name} price={x.price} rating={x.rating} type={x.type}></Product>
+                        <Product key={index} id={x._id} image={x.image} name={x.name} price={x.price} rating={x.rating} type={x.type} details={false}></Product>
                     )
                 })
             }

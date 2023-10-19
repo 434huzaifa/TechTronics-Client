@@ -15,7 +15,7 @@ const BrandCards = () => {
             {
                 brands.map((x,index)=>{
                     return(
-                        <BrandCard key={index} logo={x.logo} name={x.name}></BrandCard>
+                        <BrandCard key={index} logo={x.logo} name={x.name} id={x._id}></BrandCard>
                     )
                 })
             }
