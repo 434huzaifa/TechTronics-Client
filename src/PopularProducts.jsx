@@ -14,14 +14,7 @@ const PopularProducts = () => {
                 }
             })
             .catch(error => console.log(error))
-        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/popular`).then(res => {
-        //     return res?.json()
-        // }).then(data => {
-        //     if (data.length > 0) {
-        //         setIsExist(true)
-        //         setProducts(data)
-        //     }
-        // }).catch(error => console.log(error))
+
     }, [])
     return (
         <>

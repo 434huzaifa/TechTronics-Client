@@ -11,7 +11,6 @@ const provider = new GoogleAuthProvider();
 function App() {
   const [user, setUser] = useState([]);
   const [cartCount, setCartCount] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : 0)
-  // const[spinner,setSpinner]=useState(true);
   function cartCountUp() {
     setCartCount(cartCount + 1);
     localStorage.setItem("cart", cartCount)
@@ -51,12 +50,6 @@ function App() {
           CartCount(res.data.itemNumber);
         }
       }).catch(error => console.log(error))
-
-      // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cartitem/${user.email}`).then(res => res.json).then(data => {
-      //   if (data.itemNumber>0) {
-      //     CartCount(data.itemNumber);
-      //   }
-      // }).catch(error => console.log(error))
     }
 
   }, [user])

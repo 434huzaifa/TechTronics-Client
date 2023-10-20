@@ -8,12 +8,6 @@ const BrandCards = () => {
         axios.get("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/brands")
         .then(res=>setBrands(res.data))
         .catch(err=>console.log(err))
-        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/brands`).then(res => {
-        //     return res?.json()
-        // }).then(data => {
-        //     console.log(data)
-        //     setBrands(data)
-        // }).catch(error => console.log(error))
     }, [])
 
     return (

@@ -13,9 +13,6 @@ const AddProduct = () => {
         axios.get("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/brands")
             .then(res => setBrands(res.data))
             .catch(err => console.log(err))
-        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/brands`).then(res=>res.json()).then(data=>{
-        //     setBrands(data)
-        // }).catch(error=>console.log(error))
     }, [])
     function CreateProduct(e) {
         e.preventDefault();
@@ -31,20 +28,6 @@ const AddProduct = () => {
                 })
                 .catch(error => console.log(error))
 
-            // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${product._id}`,{
-            //     method:'PUT',
-            //     headers:{
-            //         "content-type":"application/json"
-            //     },
-            //     body:JSON.stringify(formdata),
-            // }).then(res=>res.json()).then(data=>{
-            //     if (data.modifiedCount!=0) {
-            //         Swal.fire({ icon: 'success', title: "Product Successfully Updated" }).then(() => {
-            //             navigate(`/company/${product.company}`)
-            //         });
-            //     }
-            // })
-
 
         } else {
             axios.post("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product", formdata)
@@ -57,19 +40,7 @@ const AddProduct = () => {
                 })
                 .catch(error => console.log(error))
 
-                // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product`,{
-                //     method:'POST',
-                //     headers:{
-                //         "content-type":"application/json"
-                //     },
-                //     body:JSON.stringify(formdata),
-                // }).then(res=>res.json()).then(data=>{
-                //     if (data.insertedId != null) {
-                //         Swal.fire({ icon: 'success', title: "Product Successfully Created" }).then(() => {
-                //             e.target.reset();
-                //         });
-                //     }
-                // })
+               
         }
 
 

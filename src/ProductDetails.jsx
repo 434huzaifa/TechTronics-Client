@@ -28,22 +28,6 @@ const ProductDetails = () => {
             }
         })
 
-        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart`,{
-        //     method:"POST",
-        //     headers:{
-        //         "content-type":"application/json"
-        //     },
-        //     body:JSON.stringify({productId:id,email:user.email}),
-        // }).then(res=>res?.json()).then(data=>{
-        //     if (data.insertedId != null) {
-        //         cartCountUp();
-        //         Swal.fire({ icon: 'success', title: "Product Successfully Added to Cart" }).then( ()=>{
-        //             navigate('/')
-        //         }
-
-        //         )
-        //     }
-        // }).catch(error=>console.log(error))
     }
     return (
         <div className="flex flex-col gap-3 justify-center items-center ">

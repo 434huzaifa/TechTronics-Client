@@ -29,23 +29,7 @@ const Products = () => {
                 setSearch(false)
             })
 
-        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/products`).then(res => res?.json()).then(data => {
-        //     setLoading(false)
-        //     if (data.length != 0) {
-        //         setAllProducts(data)
-        //         setSearch(false)
-        //         setIsExist(true)
-        //         if (isExist) {
 
-        //             document.getElementById("search").value = ""
-        //         }
-        //     }
-        // }).catch(error => {
-        //     console.log(error)
-        //     setIsExist(false)
-        //     setSearch(false)
-        //     setLoading(false)
-        // })
     }
     useEffect(() => {
         AllProduct()
@@ -66,17 +50,6 @@ const Products = () => {
             .catch(error => {
                 console.log(error)
             })
-        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/search/${e.target.search.value}`).then(res => {
-        //     return res.json()
-        // }).then(data => {
-        //     setLoading(false)
-        //     setAllProducts(data)
-        //     setIsExist(true)
-        // }).catch(error => {
-        //     console.log(error)
-        //     setLoading(false)
-        //     setIsExist(false)
-        // })
     }
     return (
         <>
