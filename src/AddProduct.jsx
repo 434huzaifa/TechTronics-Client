@@ -119,7 +119,7 @@ const AddProduct = () => {
                             type.map((x, index) => {
 
                                 if (product && product.type == x) {
-                                    return <option key={index} value={x} selected> {x.toUpperCase()}</option>
+                                    return <option  key={index} value={x} selected> {x.toUpperCase()}</option>
                                 } else {
 
                                     return (<option key={index} value={x}>  {x.toUpperCase()}</option>)
@@ -175,7 +175,7 @@ const AddProduct = () => {
                                 if (product && product?.rating) {
                                     return (
                                         <>
-                                            <div className="flex items-center gap-2">
+                                            <div key={index} className="flex items-center gap-2">
                                                 <Radio
                                                 defaultChecked
                                                     required="required"

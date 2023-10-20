@@ -5,11 +5,10 @@ import { Button, TextInput, Spinner } from 'flowbite-react';
 import { IoIosSearch } from "react-icons/io";
 const Products = () => {
     const [allProducts, setAllProducts] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [isSearch, setSearch] = useState(false)
     const [isExist, setIsExist] = useState(false)
     function AllProduct() {
-        setLoading(true)
         axios.get("http://192.168.0.115:5000/products")
             .then(res => {
                 setLoading(false)
@@ -24,7 +23,11 @@ const Products = () => {
                     document.getElementById("search").value = ""
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                setIsExist(false)
+                setSearch(false)
+            })
     }
     useEffect(() => {
         AllProduct()
@@ -37,22 +40,29 @@ const Products = () => {
         axios.get(`http://192.168.0.115:5000/search/${e.target.search.value}`)
             .then(res => {
                 setLoading(false)
-                if (res.data.length!=0) {
                 setAllProducts(res.data)
                 setIsExist(true)
-                }
-                
+
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+
+            })
     }
     return (
         <>
-            {
+            {loading ? <div className="text-center mt-5">
+                <Spinner
+                    aria-label="Extra large spinner example"
+                    size="xl"
+                />
+            </div>
+                :
                 isExist ?
                     <div>
                         <p className="text-center text-3xl font-extrabold mt-4">{isSearch ? "Searched Item" : "All Item"}</p>
                         <form onSubmit={SearchByName}>
-                            <div className="w-full mt-2 flex gap-2 justify-center">
+                            <div className="lg:w-full mt-2 flex gap-1 lg:gap-2 justify-center">
                                 {
                                     isSearch ? <Button onClick={() => AllProduct()}>Clear Search</Button> : ""
                                 }
@@ -64,7 +74,7 @@ const Products = () => {
                                     required
                                     placeholder="Search by name...."
                                     type="text"
-                                    className="w-2/4"
+                                    className="lg:w-2/4"
                                 />
                                 <Button type="submit">Search</Button>
                             </div>
@@ -74,16 +84,18 @@ const Products = () => {
                                 aria-label="Extra large spinner example"
                                 size="xl"
                             />
-                        </div> : <div className="grid grid-cols-4 gap-4 mt-5">
-                            {
-                                allProducts.map((x, index) => {
-                                    return (
-                                        <Product key={index} id={x._id} image={x.image} name={x.name} price={x.price} rating={x.rating} type={x.type} details={false}></Product>
-                                    )
-                                })
-                            }
+                        </div>
+                            : allProducts.length == 0 ? <p className="text-center text-red-600 text-3xl font-extrabold mt-4">No Data Found </p> :
+                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+                                    {
+                                        allProducts.map((x, index) => {
+                                            return (
+                                                <Product key={index} id={x._id} image={x.image} name={x.name} price={x.price} rating={x.rating} type={x.type} details={false}></Product>
+                                            )
+                                        })
+                                    }
 
-                        </div>}
+                                </div>}
 
                     </div> :
                     <p className="text-center text-red-600 text-3xl font-extrabold mt-4">There is no data in the database</p>

@@ -42,12 +42,12 @@ const router = createBrowserRouter([
       },
       {
         path:"/product/:id",
-        element:<Private><AddProduct></AddProduct></Private>,
+        element:<Private><ProductDetails></ProductDetails></Private>,
         loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
       },
       {
         path:'/productdetails/:id',
-        element:<Private> <ProductDetails></ProductDetails></Private>,
+        element:<Private> <AddProduct></AddProduct></Private>,
         loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
       },
       {

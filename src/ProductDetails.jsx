@@ -30,10 +30,10 @@ const ProductDetails = () => {
     }
     return (
         <div className="flex flex-col gap-3 justify-center items-center ">
-            <div className="w-3/5">
+            <div className="lg:w-3/5">
                 <img src={product.image} alt="" />
             </div>
-            <div className="flex flex-col gap-2 w-3/5 p-3">
+            <div className="flex flex-col gap-2 lg:w-3/5 p-3">
                 <div>
                     <Badge className="justify-center p-2 w-min font-bold" color="success">
                         {product.type.toUpperCase()}
