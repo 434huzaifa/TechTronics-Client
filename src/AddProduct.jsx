@@ -1,8 +1,9 @@
 import { Button, Label, TextInput, Select, Textarea, Radio } from 'flowbite-react';
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Swal from 'sweetalert2';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { local } from './varcel';
 const AddProduct = () => {
     const [brands, setBrands] = useState([])
     const product = useLoaderData();
@@ -10,33 +11,66 @@ const AddProduct = () => {
     const type = ['other', 'game', 'headphone', 'fridge', 'computer', 'phone']
     let arr = new Array(5).fill("")
     useEffect(() => {
-        axios.get("http://192.168.0.115:5000/brands")
-            .then(res => setBrands(res.data))
-            .catch(err => console.log(err))
+        // axios.get("http://192.168.0.115:5000/brands")
+        //     .then(res => setBrands(res.data))
+        //     .catch(err => console.log(err))
+        fetch(`${local}/brands`).then(res=>res.json()).then(data=>{
+            setBrands(data)
+        }).catch(error=>console.log(error))
     }, [])
     function CreateProduct(e) {
         e.preventDefault();
         let formdata = Object.fromEntries(new FormData(e.target)) // turn fromdata into key value pair. default form data make array of array
         if (product) {
-            axios.put(`http://192.168.0.115:5000/product/${product._id}`,formdata)
-                .then(res => {
-                    if (res.data.modifiedCount!=0) {
-                        Swal.fire({ icon: 'success', title: "Product Successfully Updated" }).then(() => {
-                            navigate(`/company/${product.company}`)
-                        });
-                    }
-                })
-                .catch(error => console.log(error))
+            // axios.put(`http://192.168.0.115:5000/product/${product._id}`,formdata)
+            //     .then(res => {
+            //         if (res.data.modifiedCount!=0) {
+            //             Swal.fire({ icon: 'success', title: "Product Successfully Updated" }).then(() => {
+            //                 navigate(`/company/${product.company}`)
+            //             });
+            //         }
+            //     })
+            //     .catch(error => console.log(error))
+
+            fetch(`${local}/product/${product._id}`,{
+                method:'PUT',
+                headers:{
+                    "content-type":"application/json"
+                },
+                body:JSON.stringify(formdata),
+            }).then(res=>res.json()).then(data=>{
+                if (data.modifiedCount!=0) {
+                    Swal.fire({ icon: 'success', title: "Product Successfully Updated" }).then(() => {
+                        navigate(`/company/${product.company}`)
+                    });
+                }
+            })
+
+
         } else {
-            axios.post("http://192.168.0.115:5000/product", formdata)
-                .then(res => {
-                    if (res.data.insertedId != null) {
+            // axios.post("http://192.168.0.115:5000/product", formdata)
+            //     .then(res => {
+            //         if (res.data.insertedId != null) {
+            //             Swal.fire({ icon: 'success', title: "Product Successfully Created" }).then(() => {
+            //                 e.target.reset();
+            //             });
+            //         }
+            //     })
+            //     .catch(error => console.log(error))
+
+                fetch(`${local}/product`,{
+                    method:'POST',
+                    headers:{
+                        "content-type":"application/json"
+                    },
+                    body:JSON.stringify(formdata),
+                }).then(res=>res.json()).then(data=>{
+                    if (data.insertedId != null) {
                         Swal.fire({ icon: 'success', title: "Product Successfully Created" }).then(() => {
                             e.target.reset();
                         });
                     }
                 })
-                .catch(error => console.log(error))
         }
 
 

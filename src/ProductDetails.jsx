@@ -4,8 +4,9 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import {HiShoppingCart } from 'react-icons/hi';
 import { useContext } from "react";
 import { myContext } from "./App";
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
+import { local } from "./varcel";
 const ProductDetails = () => {
     const {user,cartCountUp}=useContext(myContext)
     const navigate=useNavigate()
@@ -17,8 +18,25 @@ const ProductDetails = () => {
         arr = new Array(0).fill("")
     }
     function AddToCart(id) {
-        axios.post("http://192.168.0.115:5000/cart",{productId:id,email:user.email}).then(res=>{
-            if (res.data.insertedId != null) {
+        // axios.post("http://192.168.0.115:5000/cart",{productId:id,email:user.email}).then(res=>{
+        //     if (res.data.insertedId != null) {
+        //         cartCountUp();
+        //         Swal.fire({ icon: 'success', title: "Product Successfully Added to Cart" }).then( ()=>{
+        //             navigate('/')
+        //         }
+
+        //         )
+        //     }
+        // })
+
+        fetch(`${local}/cart`,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({productId:id,email:user.email}),
+        }).then(res=>res.json()).then(data=>{
+            if (data.insertedId != null) {
                 cartCountUp();
                 Swal.fire({ icon: 'success', title: "Product Successfully Added to Cart" }).then( ()=>{
                     navigate('/')
@@ -26,7 +44,7 @@ const ProductDetails = () => {
 
                 )
             }
-        })
+        }).catch(error=>console.log(error))
     }
     return (
         <div className="flex flex-col gap-3 justify-center items-center ">
