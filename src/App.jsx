@@ -5,7 +5,6 @@ import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, creat
 import app from './firebase.init.js';
 import { createContext, useEffect, useState } from 'react';
 import axios from "axios";
-import Swal from 'sweetalert2';
 const auth = getAuth(app);
 export const myContext = createContext(null)
 const provider = new GoogleAuthProvider();
@@ -26,8 +25,8 @@ function App() {
     return signInWithEmailAndPassword(auth, email, password)
   }
   function LogOut() {
-    navigate('/login')
     localStorage.removeItem('cart')
+    navigate('/login')
     return signOut(auth)
   }
   function googlemama() {
@@ -41,13 +40,16 @@ function App() {
       unSubscribe();
     }
   }, [])
+  function CartCount(number){
+    setCartCount(number)
+        localStorage.setItem('cart',number)
+  }
   useEffect(()=>{
-    if (user?.email!=undefined) {
-      axios.get(`http://192.168.0.115:5000/cart/${user.email}`).then(res=>{
+    if (user?.email!=undefined && !localStorage.getItem('cart')) {
+      axios.get(`http://192.168.0.115:5000/cartitem/${user.email}`).then(res=>{
       console.log(res.data)
-      if (res.data.length>0) {
-        setCartCount(res.data.length)
-        localStorage.setItem('cart',res.data.length)
+      if (res.data.itemNumber>0) {
+        CartCount(res.data.itemNumber);
       }
     }).catch(error=>console.log(error))
     }  
@@ -60,7 +62,8 @@ function App() {
     LogOut,
     googlemama,
     cartCount,
-    cartCountUp
+    cartCountUp,
+    CartCount
   }
   return (
     <div className='px-24'>
