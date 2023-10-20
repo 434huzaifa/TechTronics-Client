@@ -1,7 +1,13 @@
 import { Card, Rating, Badge } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 const Product = ({ price, image, id, name, rating, type, details }) => {
-    let arr = new Array(Number(rating)).fill("")
+    let arr
+    if (rating!=undefined) {
+        arr = new Array(Number(rating)).fill("")
+    }else{
+        arr = new Array(0).fill("")
+    }
+    
     return (
         <div>
             <Card renderImage={() => <div className='flex justify-center h-full'><img src={image} className='h-44' /></div>}

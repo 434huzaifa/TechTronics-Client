@@ -1,5 +1,5 @@
 // import { NavLink } from "react-router-dom";
-import { Dropdown, Navbar, Avatar } from 'flowbite-react';
+import { Dropdown,Navbar, Avatar } from 'flowbite-react';
 import { NavLink } from 'react-router-dom';
 import './App.css'
 import { useContext } from 'react';
@@ -36,11 +36,9 @@ const NavBar = () => {
                 <NavLink to="/login">Login</NavLink>
                 
                 <NavLink to="/register">Register</NavLink>
-                
                 {
                     user ? <NavLink to="/addproduct">Add Product</NavLink> : ""
                 }
-
             </Navbar.Collapse>
         </Navbar>
     );

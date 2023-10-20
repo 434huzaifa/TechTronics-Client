@@ -17,9 +17,7 @@ const AddProduct = () => {
     function CreateProduct(e) {
         e.preventDefault();
         let formdata = Object.fromEntries(new FormData(e.target)) // turn fromdata into key value pair. default form data make array of array
-        console.log('formdata: ', formdata);
         if (product) {
-            console.log("product._id",product._id)
             axios.put(`http://192.168.0.115:5000/product/${product._id}`,formdata)
                 .then(res => {
                     if (res.data.modifiedCount!=0) {
@@ -91,6 +89,7 @@ const AddProduct = () => {
                         id="company"
                         name="company"
                         required
+                        
                     >
                         {
                             brands.map((x, index) => {
@@ -173,11 +172,29 @@ const AddProduct = () => {
                     {
                         arr.map((x, index) => {
                             if (product && product.rating == index + 1) {
+                                if (product && product?.rating) {
+                                    return (
+                                        <>
+                                            <div className="flex items-center gap-2">
+                                                <Radio
+                                                defaultChecked
+                                                    required="required"
+                                                    id={index + 1}
+                                                    name="rating"
+                                                    value={index}
+                                                />
+                                                <Label htmlFor={index + 1}>
+                                                    {index + 1}
+                                                </Label>
+                                            </div>
+                                        </>
+                                    )
+                                }
                                 return (
                                     <>
                                         <div className="flex items-center gap-2">
                                             <Radio
-                                                defaultChecked
+                                                required="required"
                                                 id={index + 1}
                                                 name="rating"
                                                 value={index}

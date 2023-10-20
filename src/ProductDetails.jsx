@@ -4,7 +4,12 @@ import { BsCurrencyDollar } from "react-icons/bs";
 const ProductDetails = () => {
     const product = useLoaderData()
     console.log(product)
-    let arr = new Array(Number(product.rating)).fill("")
+    let arr
+    if (product.rating!=undefined) {
+        arr = new Array(Number(product.rating)).fill("")
+    }else{
+        arr = new Array(0).fill("")
+    }
     return (
         <div className="flex flex-col gap-3 justify-center items-center ">
             <div className="w-3/5">
@@ -20,7 +25,7 @@ const ProductDetails = () => {
                 <p className="text-3xl font-extrabold">{product.name}</p>
                 <p className="bg-red-600 rounded-lg text-white p-1 w-min"> <span className="text-xl font-bold flex justify-center items-center "> <BsCurrencyDollar></BsCurrencyDollar> {product.price}</span> </p>
                 </div>
-                <p className="text-lg font-semibold">{product.description}</p>
+                <p className=" font-semibold">{product.description}</p>
                 <Rating>
                     {
                         arr.map((x, index) => {

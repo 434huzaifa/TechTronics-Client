@@ -11,7 +11,8 @@ const BrandCards = () => {
     }, [])
 
     return (
-        
+        <div className="mt-4">
+            <p className="text-center text-3xl font-extrabold mb-2">Brands</p>
         <div className="flex justify-center">
             {
                 brands.map((x,index)=>{
@@ -20,6 +21,7 @@ const BrandCards = () => {
                     )
                 })
             }
+        </div>
         </div>
     );
 };

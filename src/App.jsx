@@ -4,6 +4,7 @@ import Footer2 from './Footer2'
 import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import app from './firebase.init.js';
 import { createContext, useEffect, useState } from 'react';
+
 const auth = getAuth(app);
 export const myContext = createContext(null)
 const provider = new GoogleAuthProvider();
