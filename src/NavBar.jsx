@@ -43,12 +43,11 @@ const NavBar = () => {
 
             <Navbar.Collapse>
                 <NavLink to="/">Home</NavLink>
-                <NavLink to="/login">Login</NavLink>
 
-                <NavLink to="/register">Register</NavLink>
                 {
                     user ?
                         <>
+
                             <NavLink to="/addproduct">Add Product</NavLink>
                             <NavLink className="hidden md:block" to="/cart">
                                 <Badge color="warning" className='absolute'>
@@ -57,7 +56,10 @@ const NavBar = () => {
                                 <p className='relative bottom-2 left-8 bg-green-400 rounded-full px-1'>{cartCount}</p>
                             </NavLink>
                         </>
-                        : ""
+                        : <>
+                            <NavLink to="/login">Login</NavLink>
+
+                            <NavLink to="/register">Register</NavLink></>
                 }
 
             </Navbar.Collapse>

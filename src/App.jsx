@@ -64,7 +64,7 @@ function App() {
     CartCount
   }
   return (
-    <div className='px-[5%]'>
+    <div className='px-[5%] min-h-[100vh] flex flex-col'>
       <myContext.Provider value={context}>
         <NavBar></NavBar>
         <Outlet></Outlet>

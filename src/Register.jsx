@@ -1,4 +1,4 @@
-import { Button, Card, Kbd, Label, TextInput, Badge } from 'flowbite-react';
+import { Button, Card, Kbd, Label, TextInput, } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
@@ -36,7 +36,7 @@ const Register = () => {
                                 }).catch(error => console.log(error))
 
                                 Swal.fire({ icon: 'success', title: "Account Successfully Created" }
-                                ).then(()=>{
+                                ).then(() => {
                                     navigate('/login')
                                 })
                             }
@@ -59,101 +59,100 @@ const Register = () => {
     }
     function itsgoogletime() {
         googlemama()
-          .then(() => {
-            navigate('/')
-          })
-          .catch(error => console.log(error))
-      }
+            .then(() => {
+                navigate('/')
+            })
+            .catch(error => console.log(error))
+    }
     return (
-        <div>
-            <Card>
-                <form className="flex flex-col gap-4" onSubmit={GetUserAndCreate}>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="name"
-                                value="Your name"
+        <div className='flex justify-center'> 
+            <div className='w-1/4'>
+                <Card >
+                    <form className="flex flex-col gap-4" onSubmit={GetUserAndCreate}>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="name"
+                                    value="Your name"
+                                />
+                            </div>
+                            <TextInput
+                                id="name"
+                                required
+                                type="text"
+                                name="name"
                             />
                         </div>
-                        <TextInput
-                            id="name"
-                            required
-                            type="text"
-                            name="name"
-                        />
-                    </div>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="image"
-                                value="Your profile picture url"
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="image"
+                                    value="Your profile picture url"
+                                />
+                            </div>
+                            <TextInput
+                                id="image"
+                                type="url"
+                                name="image"
                             />
                         </div>
-                        <TextInput
-                            id="image"
-                            type="url"
-                            name="image"
-                        />
-                    </div>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="email1"
-                                value="Your email"
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="email1"
+                                    value="Your email"
+                                />
+                            </div>
+                            <TextInput
+                                id="email1"
+                                placeholder="name@flowbite.com"
+                                required
+                                type="email"
+                                name="email"
                             />
                         </div>
-                        <TextInput
-                            id="email1"
-                            placeholder="name@flowbite.com"
-                            required
-                            type="email"
-                            name="email"
-                        />
-                    </div>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="password1"
-                                value="Your password"
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="password1"
+                                    value="Your password"
+                                />
+                            </div>
+                            <TextInput
+                                id="password1"
+                                required
+                                type="password"
+                                name="password1"
                             />
                         </div>
-                        <TextInput
-                            id="password1"
-                            required
-                            type="password"
-                            name="password1"
-                        />
-                    </div>
-                    <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="password2"
-                                value="Confirm Password"
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="password2"
+                                    value="Confirm Password"
+                                />
+                            </div>
+                            <TextInput
+                                id="password2"
+                                required
+                                type="password"
+                                name="password2"
                             />
                         </div>
-                        <TextInput
-                            id="password2"
-                            required
-                            type="password"
-                            name="password2"
-                        />
-                    </div>
-                    <p id='error' className='text-red-500 font-semibold '></p>
-                    <div className='flex gap-4 justify-center items-center'>
-                        <Button type="submit" color="blue">
-                            Submit
-                        </Button>
-                        <Badge color="pink">
-                            or
-                        </Badge>
-                        <Button color='gray' onClick={itsgoogletime}>
-                            <FcGoogle className='text-xl'> </FcGoogle>
-                        </Button>
-                    </div>
+                        <p id='error' className='text-red-500 font-semibold '></p>
+                        <div className='flex gap-4 justify-center items-center'>
+                            <Button type="submit" color="blue">
+                                Submit
+                            </Button>
+                            <Button color='gray' onClick={itsgoogletime}>
+                                <FcGoogle className='text-xl'> </FcGoogle>
+                            </Button>
+                        </div>
 
-                </form>
-            </Card>
-            <p className='text-center text-lg mt-4 font-semibold'> If you have a account please, <Link to="/login"><Kbd className='underline text-blue-500'>Login</Kbd></Link></p>
+                    </form>
+                </Card>
+                <p className='text-center text-lg mt-4 font-semibold'> If you have a account please, <Link to="/login"><Kbd className='underline text-blue-500'>Login</Kbd></Link></p>
+            </div>
         </div>
     );
 };

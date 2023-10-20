@@ -1,16 +1,16 @@
 import { Footer } from 'flowbite-react';
 const Footer2 = () => {
     return (
-        <Footer container className='mt-9'>
-        <div className="w-full text-center">
-          <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
+        <Footer container className='mt-auto'>
+        <div className="w-full">
+          <div className="w-full justify-between  sm:flex sm:items-center sm:justify-between">
             <Footer.Brand
               alt="Techtronics Logo"
               href="/"
               name="Techtronics"
               src="/laptop.png"
             />
-            <Footer.LinkGroup>
+            <Footer.LinkGroup className='flex justify-between'>
               <Footer.Link href="#">
                 About
               </Footer.Link>

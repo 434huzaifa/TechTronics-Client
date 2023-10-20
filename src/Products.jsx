@@ -88,7 +88,7 @@ const Products = () => {
                             />
                         </div>
                             : allProducts.length == 0 ? <p className="text-center text-red-600 text-3xl font-extrabold mt-4">No Data Found </p> :
-                                <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+                                <div className="justify-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
                                     {
                                         allProducts.map((x, index) => {
                                             return (

@@ -9,14 +9,14 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
         arr = new Array(0).fill("")
     }
     return (
-        <div>
+        
             <Card onClick={() => { 
                 if (!details) {
                     navigate(`/productdetails/${id}`)
                 }                                                   
-            }}renderImage={() => <div className='flex justify-center h-full' ><img src={image} className='object-contain h-auto lg:h-52' /></div>}
+            }}renderImage={() => <div className='flex justify-center w-full h-full' ><img src={image} className='object-contain w-[40%] md:w-[60%] h-full ' /></div>}
                 imgAlt={name}
-                id={id} className='p-1 h-full'>
+                id={id} className='p-1 h-full md:w-auto w-[70%]'>
 
                 <h5 className=" lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                     <p>
@@ -64,7 +64,7 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                 }
 
             </Card>
-        </div>
+        
     );
 };
 
