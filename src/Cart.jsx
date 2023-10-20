@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { myContext } from "./App";
-// import axios from "axios";
+import axios from "axios";
 import { Table, Button, Spinner, Card, Badge } from 'flowbite-react';
 import Swal from "sweetalert2";
-import { local } from "./varcel";
 const Cart = () => {
     const { user, CartCount } = useContext(myContext)
     const [cart, setCart] = useState()
@@ -11,27 +10,12 @@ const Cart = () => {
     const [sum, setSum] = useState(0)
     useEffect(() => {
         if (user?.email) {
-            // axios.get(`http://192.168.0.115:5000/cart/${user.email}`).then(res => {
-            //     if (res.data.length) {
-            //         CartCount(res.data.length);
-            //         setCart(res.data);
-            //         let s = 0
-            //         res.data?.forEach(x => {
-            //             s += parseFloat(x.price)
-            //         });
-            //         setSum(s)
-            //         setIsLoading(false);
-            //     }
-            // }).catch(error => {
-            //     setIsLoading(false);
-            //     console.log(error)
-            // })
-            fetch(`${local}/cart/${user.email}`).then(res=>res.json()).then(data=>{
-                if (data.length) {
-                    CartCount(data.length);
-                    setCart(data);
+            axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart/${user.email}`).then(res => {
+                if (res.data.length) {
+                    CartCount(res.data.length);
+                    setCart(res.data);
                     let s = 0
-                    data?.forEach(x => {
+                    res.data?.forEach(x => {
                         s += parseFloat(x.price)
                     });
                     setSum(s)
@@ -41,29 +25,27 @@ const Cart = () => {
                 setIsLoading(false);
                 console.log(error)
             })
+            // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart/${user.email}`).then(res=>res?.json()).then(data=>{
+            //     if (data.length) {
+            //         CartCount(data.length);
+            //         setCart(data);
+            //         let s = 0
+            //         data?.forEach(x => {
+            //             s += parseFloat(x.price)
+            //         });
+            //         setSum(s)
+            //         setIsLoading(false);
+            //     }
+            // }).catch(error => {
+            //     setIsLoading(false);
+            //     console.log(error)
+            // })
         }
 
     }, [user])
     function DeleteFromCart(id) {
-        // axios.delete(`http://192.168.0.115:5000/cart/${id}`).then(res => {
-        //     if (res.data.deletedCount == 1) {
-        //         Swal.fire({ icon: 'success', title: "Product Successfully Deleted from Cart" }).then(() => {
-        //             let newCart = cart?.filter(x => x.cartId != id)
-        //             setCart(newCart)
-        //             let s = 0
-        //             newCart?.forEach(x => {
-        //                 s += parseFloat(x.price)
-        //             });
-        //             setSum(s)
-        //             CartCount(newCart.length);
-        //         })
-        //     }
-        // }).catch(error => console.log(error))
-
-        fetch(`${local}/cart/${id}`,{
-            method:"DELETE",
-        }).then(res=>res.json()).then(data=>{
-            if (data.deletedCount == 1) {
+        axios.delete(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart/${id}`).then(res => {
+            if (res.data.deletedCount == 1) {
                 Swal.fire({ icon: 'success', title: "Product Successfully Deleted from Cart" }).then(() => {
                     let newCart = cart?.filter(x => x.cartId != id)
                     setCart(newCart)
@@ -75,8 +57,25 @@ const Cart = () => {
                     CartCount(newCart.length);
                 })
             }
-        
         }).catch(error => console.log(error))
+
+        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart/${id}`,{
+        //     method:"DELETE",
+        // }).then(res=>res.json()).then(data=>{
+        //     if (data.deletedCount == 1) {
+        //         Swal.fire({ icon: 'success', title: "Product Successfully Deleted from Cart" }).then(() => {
+        //             let newCart = cart?.filter(x => x.cartId != id)
+        //             setCart(newCart)
+        //             let s = 0
+        //             newCart?.forEach(x => {
+        //                 s += parseFloat(x.price)
+        //             });
+        //             setSum(s)
+        //             CartCount(newCart.length);
+        //         })
+        //     }
+        
+        // }).catch(error => console.log(error))
     }
     return (
         <div>

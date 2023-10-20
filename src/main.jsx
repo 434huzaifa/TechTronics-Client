@@ -8,12 +8,11 @@ import Login from './Login.jsx'
 import Register from './Register.jsx'
 import AddProduct from './AddProduct.jsx'
 import Brand from './Brand.jsx'
-// import axios from 'axios'
+import axios from 'axios'
 import ProductDetails from './ProductDetails.jsx'
 import Private from './Private.jsx'
 import ErrorElement from './ErrorElement.jsx'
 import Cart from './Cart.jsx'
-import { local } from './varcel.js'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -38,21 +37,21 @@ const router = createBrowserRouter([
       },
       {
         path:"/company/:id",
-        element:<Brand></Brand>,
-        // loader:({params})=>{return axios.get(`http://192.168.0.115:5000/company/${params.id}`).then(res=>res.data)},
-        loader:({params})=>{return fetch(`${local}/company/${params.id}`)},
+        element:<Private><Brand></Brand></Private>,
+        loader:({params})=>{return axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/company/${params.id}`).then(res=>res.data)},
+        // loader:({params})=>{return fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/company/${params.id}`)},
       },
       {
         path:"/product/:id",
         element:<Private><AddProduct></AddProduct></Private>,
-        // loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
-        loader:({params})=>{return fetch(`${local}/product/${params.id}`)}
+        loader:({params})=>{return axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${params.id}`).then(res=>res.data)}
+        // loader:({params})=>{return fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${params.id}`)}
       },
       {
         path:'/productdetails/:id',
         element:<Private>  <ProductDetails></ProductDetails></Private>,
-        // loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
-        loader:({params})=>{return fetch(`${local}/product/${params.id}`)}
+        // loader:({params})=>{return axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${params.id}`).then(res=>res.data)}
+        loader:({params})=>{return fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${params.id}`)}
       },
       {
         path:'/cart',

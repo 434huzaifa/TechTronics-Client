@@ -1,52 +1,51 @@
-// import axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Product from "./Product";
 import { Button, TextInput, Spinner } from 'flowbite-react';
 import { IoIosSearch } from "react-icons/io";
-import { local } from "./varcel";
 const Products = () => {
     const [allProducts, setAllProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [isSearch, setSearch] = useState(false)
     const [isExist, setIsExist] = useState(false)
     function AllProduct() {
-        // axios.get("http://192.168.0.115:5000/products")
-        //     .then(res => {
-        //         setLoading(false)
-        //         if (res.data.length != 0) {
-        //             setAllProducts(res.data)
-        //             setSearch(false)
-        //             setIsExist(true)
-        //         }
+        axios.get("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/products")
+            .then(res => {
+                setLoading(false)
+                if (res.data.length != 0) {
+                    setAllProducts(res.data)
+                    setSearch(false)
+                    setIsExist(true)
+                }
 
+                if (isExist) {
+
+                    document.getElementById("search").value = ""
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                setIsExist(false)
+                setSearch(false)
+            })
+
+        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/products`).then(res => res?.json()).then(data => {
+        //     setLoading(false)
+        //     if (data.length != 0) {
+        //         setAllProducts(data)
+        //         setSearch(false)
+        //         setIsExist(true)
         //         if (isExist) {
 
         //             document.getElementById("search").value = ""
         //         }
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         setIsExist(false)
-        //         setSearch(false)
-        //     })
-
-        fetch(`${local}/products`).then(res => res.json()).then(data => {
-            setLoading(false)
-            if (data.length != 0) {
-                setAllProducts(data)
-                setSearch(false)
-                setIsExist(true)
-            }
-
-            if (isExist) {
-
-                document.getElementById("search").value = ""
-            }
-        }).catch(error => {
-            console.log(error)
-            setIsExist(false)
-            setSearch(false)
-        })
+        //     }
+        // }).catch(error => {
+        //     console.log(error)
+        //     setIsExist(false)
+        //     setSearch(false)
+        //     setLoading(false)
+        // })
     }
     useEffect(() => {
         AllProduct()
@@ -56,21 +55,28 @@ const Products = () => {
         e.preventDefault();
         setLoading(true)
         setSearch(true)
-        // axios.get(`http://192.168.0.115:5000/search/${e.target.search.value}`)
-        //     .then(res => {
-        //         setLoading(false)
-        //         setAllProducts(res.data)
-        //         setIsExist(true)
 
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
-        fetch(`${local}/search/${e.target.search.value}`).then(res => res.json()).then(data => {
-            setLoading(false)
-            setAllProducts(data)
-            setIsExist(true)
-        }).catch(error=>console.log(error))
+        axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/search/${e.target.search.value}`)
+            .then(res => {
+                setLoading(false)
+                setAllProducts(res.data)
+                setIsExist(true)
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/search/${e.target.search.value}`).then(res => {
+        //     return res.json()
+        // }).then(data => {
+        //     setLoading(false)
+        //     setAllProducts(data)
+        //     setIsExist(true)
+        // }).catch(error => {
+        //     console.log(error)
+        //     setLoading(false)
+        //     setIsExist(false)
+        // })
     }
     return (
         <>

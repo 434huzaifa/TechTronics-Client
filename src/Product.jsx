@@ -13,8 +13,8 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
             <Card onClick={() => { 
                 if (!details) {
                     navigate(`/productdetails/${id}`)
-                }
-            }}renderImage={() => <div className='flex justify-center h-full' ><img src={image} className='object-contain h-auto lg:h-44' /></div>}
+                }                                                   
+            }}renderImage={() => <div className='flex justify-center h-full' ><img src={image} className='object-contain h-auto lg:h-52' /></div>}
                 imgAlt={name}
                 id={id} className='p-1 h-full'>
 
@@ -22,6 +22,9 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                     <p>
                         {name}
                     </p>
+                    <span className="text-xl w-min bg-amber-400 p-1 rounded-lg font-bold text-gray-900 dark:text-white">
+                        ${price}
+                    </span>
                 </h5>
 
                 <div className="lg:mb-5 lg:mt-2.5 flex flex-col gap-1 lg:flex-row items-center">
@@ -37,10 +40,8 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                         {type}
                     </span>
                 </div>
-                <div className="flex lg:flex-row flex-col items-center justify-center lg:justify-between" >
-                    <span className="text-xl font-bold text-gray-900 dark:text-white">
-                        ${price}
-                    </span>
+                <div className="flex flex-col items-center justify-center lg:justify-between" >
+
 
                     {
                         details ? <div className='flex gap-1'> <Link className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800" to={`/productdetails/${id}`}>

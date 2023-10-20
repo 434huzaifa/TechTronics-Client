@@ -8,6 +8,7 @@ const Brand = () => {
     const brand = data[1]
     return (
         <div>
+            
             <Badge color="indigo" className="p-2 my-2 text-3xl justify-center">
                Welcome to {brand?.name}
             

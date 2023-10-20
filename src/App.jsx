@@ -4,8 +4,7 @@ import Footer2 from './Footer2'
 import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import app from './firebase.init.js';
 import { createContext, useEffect, useState } from 'react';
-// import axios from "axios";
-import { local } from './varcel';
+import axios from "axios";
 const auth = getAuth(app);
 export const myContext = createContext(null)
 const provider = new GoogleAuthProvider();
@@ -47,17 +46,17 @@ function App() {
   }
   useEffect(() => {
     if (user?.email != undefined && !localStorage.getItem('cart')) {
-      // axios.get(`http://192.168.0.115:5000/cartitem/${user.email}`).then(res => {
-      //   if (res.data.itemNumber > 0) {
-      //     CartCount(res.data.itemNumber);
-      //   }
-      // }).catch(error => console.log(error))
-
-      fetch(`${local}/cartitem/${user.email}`).then(res => res.json).then(data => {
-        if (data.itemNumber>0) {
-          CartCount(data.itemNumber);
+      axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cartitem/${user.email}`).then(res => {
+        if (res.data.itemNumber > 0) {
+          CartCount(res.data.itemNumber);
         }
       }).catch(error => console.log(error))
+
+      // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cartitem/${user.email}`).then(res => res.json).then(data => {
+      //   if (data.itemNumber>0) {
+      //     CartCount(data.itemNumber);
+      //   }
+      // }).catch(error => console.log(error))
     }
 
   }, [user])

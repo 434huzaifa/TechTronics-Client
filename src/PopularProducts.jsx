@@ -1,26 +1,27 @@
-// import axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import { local } from "./varcel";
 
 const PopularProducts = () => {
     const [products, setProducts] = useState()
     const [isExist, setIsExist] = useState(false)
     useEffect(() => {
-        // axios.get('http://192.168.0.115:5000/popular')
-        //     .then(res => {
-        //         if (res.data.length > 0) {
-        //             setIsExist(true)
-        //             setProducts(res.data)
-        //         }
-        //     })
-        //     .catch(error => console.log(error))
-        fetch(`${local}/popular`).then(res => res.json()).then(data => {
-            if (data.length > 0) {
-                setIsExist(true)
-                setProducts(data)
-            }
-        }).catch(error => console.log(error))
+        axios.get('https://b8a10-brandshop-server-side-434huzaifa.vercel.app/popular')
+            .then(res => {
+                if (res.data.length > 0) {
+                    setIsExist(true)
+                    setProducts(res.data)
+                }
+            })
+            .catch(error => console.log(error))
+        // fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/popular`).then(res => {
+        //     return res?.json()
+        // }).then(data => {
+        //     if (data.length > 0) {
+        //         setIsExist(true)
+        //         setProducts(data)
+        //     }
+        // }).catch(error => console.log(error))
     }, [])
     return (
         <>
