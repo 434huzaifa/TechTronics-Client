@@ -52,7 +52,7 @@ const Cart = () => {
                 </div>
                     :
                     <>
-                        <Table hoverable className="lg:block hidden">
+                        <Table hoverable >
                             <Table.Head >
                                 <Table.HeadCell className="lg:text-lg">Item Name</Table.HeadCell>
                                 <Table.HeadCell className="lg:text-lg">Type</Table.HeadCell>
@@ -82,8 +82,8 @@ const Cart = () => {
                                 </Table.Row>
                             </Table.Body>
                         </Table>
-                        <div className="lg:hidden">
-                            
+                        <div className="lg:hidden md:hidden sm:block">
+                            <p className="text-center bg-lime-500 rounded mb-2 text-slate-200 p-1">Total Price: ${sum}</p>
                         {
                             cart?.map((x, index) => {
                                 return (

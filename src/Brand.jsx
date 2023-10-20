@@ -15,7 +15,7 @@ const Brand = () => {
             <Banner></Banner>
             {
                 allProduct.length != 0 ?
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
+                    <div className="grid md:grid-cols-3 sm:grid-cols-1 lg:grid-cols-4 gap-2">
                         {
                             allProduct.map((x, index) => {
                                 return (

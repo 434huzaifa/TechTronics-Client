@@ -13,7 +13,7 @@ const BrandCards = () => {
     return (
         <div className="mt-4">
             <p className="text-center text-3xl font-extrabold mb-2">Brands</p>
-        <div className="lg:flex lg:justify-center grid grid-cols-2 gap-2">
+        <div className="lg:flex lg:justify-center md:sm:grid md:grid-cols-3 sm:grid-cols-2 gap-2">
             {
                 brands.map((x,index)=>{
                     return(

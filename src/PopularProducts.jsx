@@ -21,7 +21,7 @@ const PopularProducts = () => {
                 isExist &&
                 <div className="mt-4">
                     <p className="text-center text-3xl font-extrabold mb-2">Popular Item</p>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
+                    <div className="md:sm:grid grid-cols-2 lg:grid-cols-4 gap-4 ">
 
                         {
                             products?.map((x, index) => {
