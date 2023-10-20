@@ -34,9 +34,9 @@ const NavBar = () => {
             <Navbar.Collapse>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/login">Login</NavLink>
-                {
-                    user ? "" : <NavLink to="/register">Register</NavLink>
-                }
+                
+                <NavLink to="/register">Register</NavLink>
+                
                 {
                     user ? <NavLink to="/addproduct">Add Product</NavLink> : ""
                 }

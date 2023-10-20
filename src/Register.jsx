@@ -147,7 +147,7 @@ const Register = () => {
                             or
                         </Badge>
                         <Button color='gray' onClick={itsgoogletime}>
-                            <FcGoogle className='text-2xl'> </FcGoogle>
+                            <FcGoogle className='text-xl'> </FcGoogle>
                         </Button>
                     </div>
 

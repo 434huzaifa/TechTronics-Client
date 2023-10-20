@@ -11,10 +11,12 @@ import Brand from './Brand.jsx'
 import axios from 'axios'
 import ProductDetails from './ProductDetails.jsx'
 import Private from './Private.jsx'
+import ErrorElement from './ErrorElement.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
     element:<App></App>,
+    errorElement:<ErrorElement></ErrorElement>,
     children:[
       {
         path:'/',
