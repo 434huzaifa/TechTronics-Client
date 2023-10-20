@@ -10,6 +10,7 @@ export const myContext = createContext(null)
 const provider = new GoogleAuthProvider();
 function App() {
   const [user, setUser] = useState([]);
+  const [dark,setDark] =useState(false)
   const [cartCount, setCartCount] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : 0)
   function cartCountUp() {
     setCartCount(cartCount + 1);
@@ -61,14 +62,16 @@ function App() {
     googlemama,
     cartCount,
     cartCountUp,
-    CartCount
+    CartCount,
+    dark,
+    setDark
   }
   return (
     <div className='px-[5%] min-h-[100vh] flex flex-col'>
       <myContext.Provider value={context}>
-        <NavBar></NavBar>
-        <Outlet></Outlet>
-        <Footer2></Footer2>
+          <NavBar></NavBar>
+          <Outlet></Outlet>
+          <Footer2></Footer2>
       </myContext.Provider>
     </div>
   )

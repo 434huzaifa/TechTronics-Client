@@ -28,10 +28,11 @@ const ProductDetails = () => {
             }
         })
 
+
     }
     return (
         <div className="flex flex-col gap-3 justify-center items-center ">
-            <div className="lg:w-3/5">
+            <div className="lg:w-3/5 flex justify-center">
                 <img src={product.image} alt="" />
             </div>
             <div className="flex flex-col gap-2 lg:w-3/5 p-3">

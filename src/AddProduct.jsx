@@ -2,8 +2,12 @@ import { Button, Label, TextInput, Select, Textarea, Radio } from 'flowbite-reac
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { myContext } from "./App";
+
+import { useContext } from "react";
 import { useLoaderData, useNavigate } from 'react-router-dom';
 const AddProduct = () => {
+    const {dark } = useContext(myContext)
     const [brands, setBrands] = useState([])
     const product = useLoaderData();
     const navigate=useNavigate()
@@ -46,14 +50,15 @@ const AddProduct = () => {
 
     }
     return (
-        <div className='flex justify-center'>
-            <form className="flex max-w-md w-full flex-col gap-4" onSubmit={CreateProduct}>
+        <div className='flex justify-center mb-10'>
+            <form className={`flex max-w-md w-full flex-col gap-4 `} onSubmit={CreateProduct}>
 
                 <div>
                     <div className="mb-2 block">
                         <Label
                             htmlFor="product_name"
                             value="Product Name"
+                            className={`${dark?"text-white": "text-gray-900"}`}
                         />
                     </div>
                     <TextInput
@@ -70,6 +75,7 @@ const AddProduct = () => {
                         <Label
                             htmlFor="image url"
                             value="Image Url"
+                            className={`${dark?"text-white": "text-gray-900"}`}
                         />
                     </div>
                     <TextInput
@@ -87,6 +93,7 @@ const AddProduct = () => {
                         <Label
                             htmlFor="company"
                             value="Brand Name"
+                            className={`${dark?"text-white": "text-gray-900"}`}
                         />
                     </div>
                     <Select
@@ -100,10 +107,10 @@ const AddProduct = () => {
                                 if (product) {
 
                                     if (product.company == x._id) {
-                                        return (<option key={index} value={x._id} selected> {x.name}</option>)
+                                        return (<option className={`${dark?"text-white": "text-gray-900"}`} key={index} value={x._id} selected> {x.name}</option>)
                                     }
                                 }
-                                return (<option key={index} value={x._id}> {x.name}</option>)
+                                return (<option className={`${dark?"text-white": "text-gray-900"}`} key={index} value={x._id}> {x.name}</option>)
                             })
                         }
                     </Select>
@@ -115,6 +122,7 @@ const AddProduct = () => {
                         <Label
                             htmlFor="type"
                             value="Product Type"
+                            className={`${dark?"text-white": "text-gray-900"}`}
                         />
                     </div>
                     <Select
@@ -123,10 +131,10 @@ const AddProduct = () => {
                             type.map((x, index) => {
 
                                 if (product && product.type == x) {
-                                    return <option  key={index} value={x} selected> {x.toUpperCase()}</option>
+                                    return <option className={`${dark?"text-white": "text-gray-900"}`}  key={index} value={x} selected> {x.toUpperCase()}</option>
                                 } else {
 
-                                    return (<option key={index} value={x}>  {x.toUpperCase()}</option>)
+                                    return (<option className={`${dark?"text-white": "text-gray-900"}`} key={index} value={x}>  {x.toUpperCase()}</option>)
                                 }
                             })
                         }
@@ -137,6 +145,7 @@ const AddProduct = () => {
                         <Label
                             htmlFor="price"
                             value="Price"
+                            className={`${dark?"text-white": "text-gray-900"}`}
                         />
                     </div>
                     <TextInput
@@ -144,6 +153,7 @@ const AddProduct = () => {
                         required
                         type="number"
                         name="price"
+                        className={`${dark?"text-white": "text-gray-900"}`}
                         defaultValue={product ? product.price : ""}
                     />
                 </div>
@@ -155,6 +165,7 @@ const AddProduct = () => {
                             <Label
                                 htmlFor="description"
                                 value="Short Description"
+                                className={`${dark?"text-white": "text-gray-900"}`}
                             />
                         </div>
                         <Textarea
@@ -162,13 +173,15 @@ const AddProduct = () => {
                             required
                             rows={4}
                             name="description"
+                            
                         />
                     </div>
                 }
 
                 <fieldset
-                    className="flex  max-w-md gap-4"
+                    className={`flex  max-w-md gap-4 ${dark?"text-white": "text-gray-900"}`}
                     id="radio"
+                    
                 >
                     <legend className="mb-4">
                         Rating
@@ -179,49 +192,53 @@ const AddProduct = () => {
                                 if (product && product?.rating) {
                                     return (
                                         <>
-                                            <div key={index} className="flex items-center gap-2">
+                                            <div key={index} className="flex items-center gap-1">
+                                            <Label htmlFor={index + 1} className={`${dark?"text-white": "text-gray-900"}`}>
+                                                    {index + 1}
+                                                </Label>
                                                 <Radio
                                                 defaultChecked
                                                     required="required"
                                                     id={index + 1}
                                                     name="rating"
                                                     value={index}
+                                                    
                                                 />
-                                                <Label htmlFor={index + 1}>
-                                                    {index + 1}
-                                                </Label>
+                                               
                                             </div>
                                         </>
                                     )
                                 }
                                 return (
                                     <>
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-1">
+                                        <Label htmlFor={index + 1} className={`${dark?"text-white": "text-gray-900"}`}>
+                                                {index + 1}
+                                            </Label>
                                             <Radio
                                                 required="required"
                                                 id={index + 1}
                                                 name="rating"
                                                 value={index}
                                             />
-                                            <Label htmlFor={index + 1}>
-                                                {index + 1}
-                                            </Label>
+                                            
                                         </div>
                                     </>
                                 )
                             } else {
                                 return (
                                     <>
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-1">
+                                        <Label htmlFor={index + 1} className={`${dark?"text-white": "text-gray-900"}`}>
+                                                {index + 1}
+                                            </Label>
                                             <Radio
 
                                                 id={index + 1}
                                                 name="rating"
                                                 value={index + 1}
                                             />
-                                            <Label htmlFor={index + 1}>
-                                                {index + 1}
-                                            </Label>
+                                            
                                         </div>
                                     </>
                                 )

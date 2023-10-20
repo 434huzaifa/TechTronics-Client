@@ -7,7 +7,7 @@ const Brand = () => {
     const allProduct = data[0]
     const brand = data[1]
     return (
-        <div>
+        <div className="mb-10">
             
             <Badge color="indigo" className="p-2 my-2 text-3xl justify-center">
                Welcome to {brand?.name}
@@ -16,7 +16,7 @@ const Brand = () => {
             <Banner></Banner>
             {
                 allProduct.length != 0 ?
-                    <div className="grid md:grid-cols-3 sm:grid-cols-1 lg:grid-cols-4 gap-2">
+                    <div className="grid md:grid-cols-3 sm:grid-cols-1 lg:grid-cols-4 gap-2 justify-items-center">
                         {
                             allProduct.map((x, index) => {
                                 return (

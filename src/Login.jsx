@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { myContext } from "./App";
 import { useContext } from "react";
 const Login = () => {
-  const { SignIn, googlemama } = useContext(myContext)
+  const { SignIn, googlemama,dark } = useContext(myContext)
   const navigate = useNavigate()
   function GetFromForm(e) {
     e.preventDefault();
@@ -22,9 +22,9 @@ const Login = () => {
   }
   return (
     <div className='flex justify-center'>
-      <div className='w-1/4'>
+      <div className='w-96'>
 
-        <Card>
+        <Card className={`${dark && "bg-slate-900 border-0"}`}>
           <div className='flex justify-center'>
             <Button color='gray' onClick={itsgoogletime}>
               <FcGoogle className='text-xl'> </FcGoogle>
@@ -36,11 +36,12 @@ const Login = () => {
                 <Label
                   htmlFor="email1"
                   value="Your email"
+                  className={`${dark?"text-white": "text-gray-900"}`}
                 />
               </div>
               <TextInput
                 id="email1"
-                placeholder="name@flowbite.com"
+                placeholder="name@gmail.com"
                 required
                 type="email"
                 name='email'
@@ -51,6 +52,7 @@ const Login = () => {
                 <Label
                   htmlFor="password1"
                   value="Your password"
+                  className={`${dark?"text-white": "text-gray-900"}`}
                 />
               </div>
               <TextInput

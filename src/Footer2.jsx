@@ -1,7 +1,10 @@
 import { Footer } from 'flowbite-react';
+import { useContext } from 'react';
+import { myContext } from './App';
 const Footer2 = () => {
+  const {dark}=useContext(myContext)
     return (
-        <Footer container className='mt-auto'>
+        <Footer container className={`mt-auto ${dark && "bg-slate-900"}`}>
         <div className="w-full">
           <div className="w-full justify-between  sm:flex sm:items-center sm:justify-between">
             <Footer.Brand

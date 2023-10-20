@@ -1,7 +1,11 @@
 import { Card, Rating, Badge } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
+import './App.css'
+import { useContext } from 'react';
+import { myContext } from './App';
 const Product = ({ price, image, id, name, rating, type, details }) => {
     const navigate = useNavigate()
+    const {dark}=useContext(myContext)
     let arr
     if (rating != undefined) {
         arr = new Array(Number(rating)).fill("")
@@ -14,11 +18,11 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                 if (!details) {
                     navigate(`/productdetails/${id}`)
                 }                                                   
-            }}renderImage={() => <div className='flex justify-center w-full h-full' ><img src={image} className='object-contain w-[40%] md:w-[60%] h-full ' /></div>}
+            }}renderImage={() => <div className='flex justify-center w-full h-full rounded-md' ><img src={image} className='object-contain w-[40%] md:w-[60%] h-full rounded-md' /></div>}
                 imgAlt={name}
-                id={id} className='p-1 h-full md:w-auto w-[70%]'>
+                id={id} className={`p-2 h-full md:w-auto w-[70%] hovercard border-0 ${dark && "bg-slate-900 "}`}>
 
-                <h5 className=" lg:text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                <h5 className={` lg:text-xl font-semibold tracking-tight  ${dark?"text-white": "text-gray-900"}`}>
                     <p>
                         {name}
                     </p>

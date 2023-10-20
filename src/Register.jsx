@@ -6,7 +6,7 @@ import { myContext } from "./App";
 import { updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2'
 const Register = () => {
-    const { signUpUser, googlemama } = useContext(myContext)
+    const { signUpUser, googlemama,dark } = useContext(myContext)
     const navigate = useNavigate()
     function GetUserAndCreate(e) {
         e.preventDefault();
@@ -65,15 +65,16 @@ const Register = () => {
             .catch(error => console.log(error))
     }
     return (
-        <div className='flex justify-center'> 
-            <div className='w-1/4'>
-                <Card >
+        <div className='flex justify-center mb-10'> 
+            <div className='w-96'>
+                <Card className={`${dark && "bg-slate-900 border-0"}`}>
                     <form className="flex flex-col gap-4" onSubmit={GetUserAndCreate}>
                         <div>
                             <div className="mb-2 block">
                                 <Label
                                     htmlFor="name"
                                     value="Your name"
+                                    className={`${dark?"text-white": "text-gray-900"}`}
                                 />
                             </div>
                             <TextInput
@@ -88,6 +89,7 @@ const Register = () => {
                                 <Label
                                     htmlFor="image"
                                     value="Your profile picture url"
+                                    className={`${dark?"text-white": "text-gray-900"}`}
                                 />
                             </div>
                             <TextInput
@@ -101,6 +103,7 @@ const Register = () => {
                                 <Label
                                     htmlFor="email1"
                                     value="Your email"
+                                    className={`${dark?"text-white": "text-gray-900"}`}
                                 />
                             </div>
                             <TextInput
@@ -116,6 +119,7 @@ const Register = () => {
                                 <Label
                                     htmlFor="password1"
                                     value="Your password"
+                                    className={`${dark?"text-white": "text-gray-900"}`}
                                 />
                             </div>
                             <TextInput
@@ -130,6 +134,7 @@ const Register = () => {
                                 <Label
                                     htmlFor="password2"
                                     value="Confirm Password"
+                                    className={`${dark?"text-white": "text-gray-900"}`}
                                 />
                             </div>
                             <TextInput

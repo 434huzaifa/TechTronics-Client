@@ -52,7 +52,7 @@ const Products = () => {
             })
     }
     return (
-        <>
+        <div className="mb-10">
             {loading ? <div className="text-center mt-5">
                 <Spinner
                     aria-label="Extra large spinner example"
@@ -103,7 +103,7 @@ const Products = () => {
                     <p className="text-center text-red-600 text-3xl font-extrabold mt-4">There is no data in the database</p>
             }
 
-        </>
+        </div>
     );
 };
 
