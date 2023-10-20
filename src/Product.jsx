@@ -1,16 +1,16 @@
 import { Card, Rating, Badge } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Product = ({ price, image, id, name, rating, type, details }) => {
+    const navigate = useNavigate()
     let arr
-    if (rating!=undefined) {
+    if (rating != undefined) {
         arr = new Array(Number(rating)).fill("")
-    }else{
+    } else {
         arr = new Array(0).fill("")
     }
-    
     return (
         <div>
-            <Card renderImage={() => <div className='flex justify-center h-full'><img src={image} className='h-44' /></div>}
+            <Card onClick={() => { navigate(`/productdetails/${id}`) }} renderImage={() => <div className='flex justify-center h-full' ><img src={image} className='h-44' /></div>}
                 imgAlt={name}
                 id={id} className='p-1 h-full'>
 
@@ -21,7 +21,7 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                 </h5>
 
                 <div className="mb-5 mt-2.5 flex items-center">
-                    <Rating>
+                    <Rating >
                         {
                             arr.map((x, index) => {
                                 return <Rating.Star key={index} />
@@ -33,7 +33,7 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                         {type}
                     </span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between" >
                     <span className="text-xl font-bold text-gray-900 dark:text-white">
                         ${price}
                     </span>
@@ -48,21 +48,16 @@ const Product = ({ price, image, id, name, rating, type, details }) => {
                                     Update
                                 </p>
 
-                            </Link></div> :
-                            <Link
-                                className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-                                to="#">
-                                <p>
-                                    Add to cart
-                                </p>
-
-                            </Link>
+                            </Link></div> : ""
                     }
 
                 </div>
-                <Badge className='text-lg justify-center' color="purple">
-                    {details}
-                </Badge>
+                {
+                    details ? <Badge className='text-lg justify-center' color="purple" >
+                        {details}
+                    </Badge> : ""
+                }
+
             </Card>
         </div>
     );

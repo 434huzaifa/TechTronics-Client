@@ -12,6 +12,7 @@ import axios from 'axios'
 import ProductDetails from './ProductDetails.jsx'
 import Private from './Private.jsx'
 import ErrorElement from './ErrorElement.jsx'
+import Cart from './Cart.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path:'/productdetails/:id',
         element:<Private> <ProductDetails></ProductDetails></Private>,
         loader:({params})=>{return axios.get(`http://192.168.0.115:5000/product/${params.id}`).then(res=>res.data)}
+      },
+      {
+        path:'/cart',
+        element:<Private> <Cart></Cart> </Private>,
       }
     ]
   }
