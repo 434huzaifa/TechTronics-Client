@@ -11,6 +11,7 @@ const Login = () => {
     let email = e.target.email.value;
     let password = e.target.password.value;
     let error = document.getElementById("error")
+    error.textContent=""
     SignIn(email, password).then(() => navigate('/')).catch(err => error.textContent = err.message)
   }
   function itsgoogletime() {

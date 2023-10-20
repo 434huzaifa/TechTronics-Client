@@ -11,6 +11,7 @@ const Register = () => {
     function GetUserAndCreate(e) {
         e.preventDefault();
         let error = document.getElementById("error")
+        error.textContent=""
         let name = e.target.name.value;
         console.log('name: ', name);
         let email = e.target.email.value;
@@ -33,7 +34,10 @@ const Register = () => {
                                     photoURL: image
                                 }).then(res => {
                                     console.log(res.user)
-                                }).catch(error => console.log(error))
+
+                                }).catch(err => {
+                                    error.textContent=err.message
+                                })
 
                                 Swal.fire({ icon: 'success', title: "Account Successfully Created" }
                                 ).then(() => {
@@ -41,7 +45,9 @@ const Register = () => {
                                 })
                             }
                             )
-                            .catch(error => console.log(error))
+                            .catch(err => {
+                                error.textContent=err.message
+                            })
                     } else {
                         error.textContent = "Password don't have a special character"
                     }
