@@ -52,7 +52,7 @@ const Cart = () => {
                 </div>
                     :
                     <>
-                        <Table hoverable >
+                        <Table hoverable  className="hidden md:table">
                             <Table.Head >
                                 <Table.HeadCell className="lg:text-lg">Item Name</Table.HeadCell>
                                 <Table.HeadCell className="lg:text-lg">Type</Table.HeadCell>
@@ -82,8 +82,9 @@ const Cart = () => {
                                 </Table.Row>
                             </Table.Body>
                         </Table>
-                        <div className="lg:hidden md:hidden sm:block">
-                            <p className="text-center bg-lime-500 rounded mb-2 text-slate-200 p-1">Total Price: ${sum}</p>
+                        <div className="lg:hidden md:hidden flex flex-col justify-center items-center">
+                            <p className="text-center w-full max-w-sm bg-lime-500 rounded mb-2 text-slate-200 p-1">Total Price: ${sum}</p>
+                            <div>
                         {
                             cart?.map((x, index) => {
                                 return (
@@ -112,7 +113,7 @@ const Cart = () => {
                                     </Card>
                                 )
                             })
-                        }</div>
+                        }</div></div>
 
                     </>
             }
