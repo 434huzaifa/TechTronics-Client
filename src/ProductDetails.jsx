@@ -17,7 +17,7 @@ const ProductDetails = () => {
         arr = new Array(0).fill("")
     }
     function AddToCart(id) {
-        axios.post("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart",{productId:id,email:user.email}).then(res=>{
+        axios.post("https://techtronics.vercel.app/cart",{productId:id,email:user.email}).then(res=>{
             if (res.data.insertedId != null) {
                 cartCountUp();
                 Swal.fire({ icon: 'success', title: "Product Successfully Added to Cart" }).then( ()=>{

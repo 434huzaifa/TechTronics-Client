@@ -10,7 +10,7 @@ const Cart = () => {
     const [sum, setSum] = useState(0)
     useEffect(() => {
         if (user?.email) {
-            axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart/${user.email}`).then(res => {
+            axios.get(`https://techtronics.vercel.app/cart/${user.email}`).then(res => {
                 if (res.data.length) {
                     CartCount(res.data.length);
                     setCart(res.data);
@@ -30,7 +30,7 @@ const Cart = () => {
 
     }, [user])
     function DeleteFromCart(id) {
-        axios.delete(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cart/${id}`).then(res => {
+        axios.delete(`https://techtronics.vercel.app/cart/${id}`).then(res => {
             if (res.data.deletedCount == 1) {
                 Swal.fire({ icon: 'success', title: "Product Successfully Deleted from Cart" }).then(() => {
                     let newCart = cart?.filter(x => x.cartId != id)

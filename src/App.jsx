@@ -46,7 +46,7 @@ function App() {
   }
   useEffect(() => {
     if (user?.email != undefined && !localStorage.getItem('cart')) {
-      axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/cartitem/${user.email}`).then(res => {
+      axios.get(`https://techtronics.vercel.app/cartitem/${user.email}`).then(res => {
         if (res.data.itemNumber > 0) {
           CartCount(res.data.itemNumber);
         }

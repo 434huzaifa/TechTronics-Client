@@ -14,7 +14,7 @@ const AddProduct = () => {
     const type = ['other', 'game', 'headphone', 'fridge', 'computer', 'phone']
     let arr = new Array(5).fill("")
     useEffect(() => {
-        axios.get("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/brands")
+        axios.get("https://techtronics.vercel.app/brands")
             .then(res => setBrands(res.data))
             .catch(err => console.log(err))
     }, [])
@@ -22,7 +22,7 @@ const AddProduct = () => {
         e.preventDefault();
         let formdata = Object.fromEntries(new FormData(e.target)) // turn fromdata into key value pair. default form data make array of array
         if (product) {
-            axios.put(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${product._id}`,formdata)
+            axios.put(`https://techtronics.vercel.app/product/${product._id}`,formdata)
                 .then(res => {
                     if (res.data.modifiedCount!=0) {
                         Swal.fire({ icon: 'success', title: "Product Successfully Updated" }).then(() => {
@@ -34,7 +34,7 @@ const AddProduct = () => {
 
 
         } else {
-            axios.post("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product", formdata)
+            axios.post("https://techtronics.vercel.app/product", formdata)
                 .then(res => {
                     if (res.data.insertedId != null) {
                         Swal.fire({ icon: 'success', title: "Product Successfully Created" }).then(() => {

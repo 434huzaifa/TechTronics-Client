@@ -38,17 +38,17 @@ const router = createBrowserRouter([
       {
         path:"/company/:id",
         element:<Private><Brand></Brand></Private>,
-        loader:({params})=>{return axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/company/${params.id}`).then(res=>res.data)},
+        loader:({params})=>{return axios.get(`https://techtronics.vercel.app/company/${params.id}`).then(res=>res.data)},
       },
       {
         path:"/product/:id",
         element:<Private><AddProduct></AddProduct></Private>,
-        loader:({params})=>{return axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${params.id}`).then(res=>res.data)}
+        loader:({params})=>{return axios.get(`https://techtronics.vercel.app/product/${params.id}`).then(res=>res.data)}
       },
       {
         path:'/productdetails/:id',
         element:<Private>  <ProductDetails></ProductDetails></Private>,
-        loader:({params})=>{return fetch(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/product/${params.id}`)}
+        loader:({params})=>{return fetch(`https://techtronics.vercel.app/product/${params.id}`)}
       },
       {
         path:'/cart',

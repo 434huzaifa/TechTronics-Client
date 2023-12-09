@@ -6,7 +6,7 @@ const PopularProducts = () => {
     const [products, setProducts] = useState()
     const [isExist, setIsExist] = useState(false)
     useEffect(() => {
-        axios.get('https://b8a10-brandshop-server-side-434huzaifa.vercel.app/popular')
+        axios.get('https://techtronics.vercel.app/popular')
             .then(res => {
                 if (res.data.length > 0) {
                     setIsExist(true)

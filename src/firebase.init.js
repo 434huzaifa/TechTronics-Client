@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCvg5EFTCM1VyNFLCe1XErmEAoJEk-EtFA",
-  authDomain: "brandshop-huzaifa.firebaseapp.com",
-  projectId: "brandshop-huzaifa",
-  storageBucket: "brandshop-huzaifa.appspot.com",
-  messagingSenderId: "138814918891",
-  appId: "1:138814918891:web:ee971e73ae2fec9800eeae"
+  apiKey: "AIzaSyChW-qvK7coouU-LUUOaq1991oayBBijoA",
+  authDomain: "techtronics-41c1d.firebaseapp.com",
+  projectId: "techtronics-41c1d",
+  storageBucket: "techtronics-41c1d.appspot.com",
+  messagingSenderId: "232651419538",
+  appId: "1:232651419538:web:cffb4bb4aa1485b53adb4b"
 };
 
 

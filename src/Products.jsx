@@ -9,7 +9,7 @@ const Products = () => {
     const [isSearch, setSearch] = useState(false)
     const [isExist, setIsExist] = useState(false)
     function AllProduct() {
-        axios.get("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/products")
+        axios.get("https://techtronics.vercel.app/products")
             .then(res => {
                 setLoading(false)
                 if (res.data.length != 0) {
@@ -40,7 +40,7 @@ const Products = () => {
         setLoading(true)
         setSearch(true)
 
-        axios.get(`https://b8a10-brandshop-server-side-434huzaifa.vercel.app/search/${e.target.search.value}`)
+        axios.get(`https://techtronics.vercel.app/search/${e.target.search.value}`)
             .then(res => {
                 setLoading(false)
                 setAllProducts(res.data)

@@ -5,7 +5,7 @@ import BrandCard from "./BrandCard";
 const BrandCards = () => {
     const [brands, setBrands] = useState([])
     useEffect(() => {
-        axios.get("https://b8a10-brandshop-server-side-434huzaifa.vercel.app/brands")
+        axios.get("https://techtronics.vercel.app/brands")
         .then(res=>setBrands(res.data))
         .catch(err=>console.log(err))
     }, [])

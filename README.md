@@ -9,4 +9,4 @@ This is a technology and electronics shop. people can buy various kind of gadget
 - Search Item
 - Popular item based on star and price
 
-Website Link: [Techtronics](https://brandshop-huzaifa.web.app)
+Website Link: [Techtronics](https://techtronics-41c1d.web.app)
